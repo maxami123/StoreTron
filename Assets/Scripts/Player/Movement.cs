@@ -7,7 +7,7 @@ public class Movement : MonoBehaviour
     public float playerSpeed = 1f;
     public float dashFactor = 2f;
     // How long we want the dash to last in seconds.
-    static public float maxDuration = 0.25f;
+    public float maxDuration = 0.25f;
     // This is a very basic way to handle turning since we don't have enough that I'm willing to use an animation controller
     public List<Sprite> sprites;
 
@@ -17,7 +17,7 @@ public class Movement : MonoBehaviour
     private float horizontal;
     private float vertical;
     private bool isDashing = false;
-    private float dashLeft = maxDuration;
+    private float dashLeft;
 
 
 
@@ -27,6 +27,7 @@ public class Movement : MonoBehaviour
         // Get components off of object
         body = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        dashLeft = maxDuration;
     }
 
     void Update()
