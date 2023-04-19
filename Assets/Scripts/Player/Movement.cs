@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    [Header("Editable Player Variables")]
     public float playerSpeed = 1f;
     public float dashFactor = 2f;
     // How long we want the dash to last in seconds.
@@ -11,13 +12,16 @@ public class Movement : MonoBehaviour
     // This is a very basic way to handle turning since we don't have enough that I'm willing to use an animation controller
     public List<Sprite> sprites;
 
+    [Header("Referenced Player Variables")]
+    public float storedHorizontal;
+    public float storedVertical;
     // Private variables
     private Rigidbody2D body;
     private SpriteRenderer spriteRenderer;
-    private float horizontal;
-    private float vertical;
     private bool isDashing = false;
     private float dashLeft;
+    private float horizontal;
+    private float vertical;
 
 
 
@@ -80,18 +84,26 @@ public class Movement : MonoBehaviour
         if (vertical < 0f)
         {
             spriteRenderer.sprite = sprites[0];
+            storedVertical = -1f;
+            storedHorizontal = 0f;
         }
         else if (vertical > 0f)
         {
             spriteRenderer.sprite = sprites[1];
+            storedVertical = 1f;
+            storedHorizontal = 0f;
         }
         else if (horizontal < 0f)
         {
             spriteRenderer.sprite = sprites[2];
+            storedHorizontal = -1f;
+            storedVertical = 0f;
         }
         else if (horizontal > 0f)
         {
             spriteRenderer.sprite = sprites[3];
+            storedHorizontal = 1f;
+            storedVertical= 0f;
         }
     }
 }

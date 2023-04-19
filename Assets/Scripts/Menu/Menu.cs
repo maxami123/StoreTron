@@ -39,6 +39,5 @@ public class Menu : MonoBehaviour
     public void Play()
     {
         SceneManager.LoadScene("Tutorial");
-        Debug.Log("test");
     }
 }
