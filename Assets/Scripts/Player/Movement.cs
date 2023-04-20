@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
@@ -10,11 +11,14 @@ public class Movement : MonoBehaviour
     // How long we want the dash to last in seconds.
     public float maxDuration = 0.25f;
     // This is a very basic way to handle turning since we don't have enough that I'm willing to use an animation controller
+    public float maxCooldown = 5.0f;
     public List<Sprite> sprites;
 
     [Header("Referenced Player Variables")]
     public float storedHorizontal;
     public float storedVertical;
+    
+
     // Private variables
     private Rigidbody2D body;
     private SpriteRenderer spriteRenderer;
@@ -22,6 +26,10 @@ public class Movement : MonoBehaviour
     private float dashLeft;
     private float horizontal;
     private float vertical;
+
+    // Cooldown Variables
+    public float dashCooldownTimer;
+    public bool canDash = true;
 
 
 
@@ -32,6 +40,7 @@ public class Movement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         dashLeft = maxDuration;
+        dashCooldownTimer = maxCooldown;
     }
 
     void Update()
@@ -40,6 +49,7 @@ public class Movement : MonoBehaviour
         GetMovement();
         ChooseSprite();
         Dash();
+        
     }
     void FixedUpdate()
     {
@@ -68,14 +78,29 @@ public class Movement : MonoBehaviour
 
     void Dash()
     {
-        if (dashLeft < maxDuration && !isDashing)
+        if (!canDash)
         {
-            dashLeft += Time.deltaTime;
+            Debug.Log(dashCooldownTimer);
+            if (dashCooldownTimer <= 0)
+            {
+                canDash = true;
+                dashCooldownTimer = maxCooldown;
+            }
+            dashCooldownTimer -= (Time.deltaTime);
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        else 
         {
-            isDashing = true;
+            if (dashLeft < maxDuration && !isDashing)
+            {
+                dashLeft += Time.deltaTime;
+            }
+            if (Input.GetKeyDown(KeyCode.LeftShift) && canDash) // Key must be held down to get maximum effect of dash
+            {
+                isDashing = true;
+                canDash = false;
+            }
         }
+        
     }
 
     // Depending on input we are going to use a different sprite for the sprite renderer
