@@ -982,9 +982,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c99a459702e095e48b7dc9011e04a880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exit: {fileID: 2145550076}
-  tutorial: {fileID: 368201931}
-  ExitMenuOpen: 0
 --- !u!4 &1948199693
 Transform:
   m_ObjectHideFlags: 0
