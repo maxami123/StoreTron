@@ -17,8 +17,7 @@ public class Menu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
+
             if (ExitMenuOpen == false)
             {
                 SceneManager.LoadScene("Main Menu");
@@ -29,7 +28,6 @@ public class Menu : MonoBehaviour
                 exit.gameObject.SetActive(false);
                 tutorial.gameObject.SetActive(false);
             }
-        }
     }
     public void Exit()
     {
