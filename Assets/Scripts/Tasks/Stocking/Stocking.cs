@@ -51,7 +51,7 @@ public class Stocking : MonoBehaviour
         if (inventory.Contains(index)) 
         {
             var where = inventory.IndexOf(index);
-            inventory.Remove(where);
+            inventory.Remove(index);
             inventorySprites[where].enabled = false;
             return true;
         }

@@ -7,6 +7,13 @@ public class EmptyShelf : MonoBehaviour, IInteractable
     // Index will be the item id, for example (lettuce - 0, apple - 0, etc)
     public int index;
     public GameObject taskHandler;
+
+    void Start()
+    {
+        taskHandler = GameObject.FindGameObjectWithTag("GameController");
+        gameObject.tag = "Interactable";
+    }
+
     public void Interact()
     {
         var success = taskHandler.GetComponent<Stocking>().StockObject(index);
