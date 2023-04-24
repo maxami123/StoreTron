@@ -17,6 +17,7 @@ public class Movement : MonoBehaviour
     [Header("Referenced Player Variables")]
     public float storedHorizontal;
     public float storedVertical;
+    public bool inMenu;
     
 
     // Private variables
@@ -36,20 +37,22 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (inMenu) { return; }
         // Get components off of object
         body = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         dashLeft = maxDuration;
         dashCooldownTimer = maxCooldown;
+        inMenu = false;
     }
 
     void Update()
     {
         // Better to get player input in update so I'm doing all of this in here
+        if (inMenu) { return; }
         GetMovement();
         ChooseSprite();
         Dash();
-        
     }
     void FixedUpdate()
     {
@@ -80,7 +83,6 @@ public class Movement : MonoBehaviour
     {
         if (!canDash)
         {
-            Debug.Log(dashCooldownTimer);
             if (dashCooldownTimer <= 0)
             {
                 canDash = true;
