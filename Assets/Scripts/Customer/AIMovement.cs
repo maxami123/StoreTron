@@ -30,7 +30,6 @@ public class AIMovement : MonoBehaviour
 
      void FixedUpdate()
     {
-
         body.velocity = new Vector2(horizontal * playerSpeed, vertical * playerSpeed);   
     }
     private int rangeCap = 1;

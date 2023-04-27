@@ -37,7 +37,6 @@ public class Interacting : MonoBehaviour
                 // Check to see if the object in front of the player is interactable
                 if (hitInfo.transform.CompareTag("Interactable"))
                 {
-                    Debug.Log(hitInfo.transform.name);
                     // Run the interact code on the IInteractable script
                     hitInfo.transform.GetComponent<IInteractable>().Interact();
                 }

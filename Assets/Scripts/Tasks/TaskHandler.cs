@@ -31,11 +31,23 @@ public class TaskHandler : MonoBehaviour
 
     private void Update()
     {
+        bool stocked = ShelvesStocked();
+        bool helped = CustomersHelped();
+
+        if (stocked && helped) 
+        {
+            SceneManager.LoadScene("Upgrades");
+        }
+    }
+
+    // Determine whether or not all the shelves are stocked
+    private bool ShelvesStocked()
+    {
         bool lettuceEmpty = true;
         bool appleEmpty = true;
 
         // Loop through both the lists to see if the objects are enabled if they aren't then we'll load the upgrades scene
-        foreach (var script in lettuceShelves) 
+        foreach (var script in lettuceShelves)
         {
             if (script.gameObject.activeSelf)
             {
@@ -49,10 +61,15 @@ public class TaskHandler : MonoBehaviour
                 appleEmpty = false;
             }
         }
-
         if (lettuceEmpty && appleEmpty)
         {
-            SceneManager.LoadScene("Upgrades");
+            return true;
         }
+        return false;
+    }
+
+    private bool CustomersHelped()
+    {
+        return false;
     }
 }
