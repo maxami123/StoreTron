@@ -1,22 +1,45 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static Unity.VisualScripting.Metadata;
 
 public class TaskHandler : MonoBehaviour
 {
     private List<EmptyShelf> lettuceShelves;
     private List<EmptyShelf> appleShelves;
+    private float clock;
 
     public GameObject lettuceParent;
     public GameObject appleParent;
+    public List<GameObject> line;
+    public int customersInLevel = 6;
+    public int customersHelped = 0;
 
     private void Start()
     {
+        clock = 0f;
         // Convert these gameobjects into a list of their children
-        lettuceShelves = lettuceParent.GetComponentsInChildren<EmptyShelf>().ToList();
-        appleShelves = appleParent.GetComponentsInChildren<EmptyShelf>().ToList();
+        lettuceShelves = lettuceParent.GetComponentsInChildren<EmptyShelf>(true).ToList();
+        appleShelves = appleParent.GetComponentsInChildren<EmptyShelf>(true).ToList();
+
+        foreach (var shelf in lettuceShelves)
+        {
+            if (shelf.GetComponent<SpriteRenderer>() != null)
+            {
+                lettuceShelves.Remove(shelf);
+            }
+        }
+
+        foreach (var shelf in appleShelves)
+        {
+            if (shelf.GetComponent<SpriteRenderer>() != null)
+            {
+                appleShelves.Remove(shelf);
+            }
+        }
 
         // Initialize these variables required for the gameobjects to work
         foreach (var script in lettuceShelves)
@@ -36,8 +59,10 @@ public class TaskHandler : MonoBehaviour
 
         if (stocked && helped) 
         {
-            SceneManager.LoadScene("Upgrades");
+            SceneManager.LoadScene("Win Screen");
+            PlayerPrefs.SetInt("Level1Clock", (int)Math.Round(clock));
         }
+        clock += Time.deltaTime;
     }
 
     // Determine whether or not all the shelves are stocked
@@ -70,6 +95,13 @@ public class TaskHandler : MonoBehaviour
 
     private bool CustomersHelped()
     {
-        return false;
+        if (customersHelped >= customersInLevel)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

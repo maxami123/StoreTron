@@ -207,9 +207,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
-        m_MethodName: Play
+      - m_Target: {fileID: 315777167}
+        m_TargetAssemblyTypeName: WinLoss, Assembly-CSharp
+        m_MethodName: PlayAgain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -353,9 +353,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21b66da1119e2d141aaa2158e3acef75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exitButton: {fileID: 1462019331}
-  restartButton: {fileID: 120616671}
-  winLossUI: {fileID: 1222018232}
+  levelCompletedText: {fileID: 521955994}
+  personalBestText: {fileID: 1180112112}
+  medalTimes: 1e0000003c000000
+  medals:
+  - {fileID: 764425453}
+  - {fileID: 846747023}
+  - {fileID: 2048599681}
 --- !u!224 &315777168
 RectTransform:
   m_ObjectHideFlags: 0
@@ -847,7 +851,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &764425454
 Transform:
   m_ObjectHideFlags: 0
@@ -931,7 +935,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &846747024
 Transform:
   m_ObjectHideFlags: 0
@@ -1328,9 +1332,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
-        m_MethodName: Exit
+      - m_Target: {fileID: 315777167}
+        m_TargetAssemblyTypeName: WinLoss, Assembly-CSharp
+        m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1529,7 +1533,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2048599682
 Transform:
   m_ObjectHideFlags: 0
