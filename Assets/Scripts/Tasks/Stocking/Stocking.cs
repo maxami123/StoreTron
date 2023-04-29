@@ -20,7 +20,7 @@ public class Stocking : MonoBehaviour
     {
         foreach(var imageSprite in inventorySprites)
         {
-            imageSprite.enabled = false;
+                imageSprite.enabled = false;
         }
     }
 
