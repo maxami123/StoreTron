@@ -12,6 +12,7 @@ public class TutorialController : MonoBehaviour
     public GameObject inventor;
     public GameObject text;
     public List<bool> completed;
+    public Canvas website;
     
 
     // Movement Instructions
@@ -24,11 +25,12 @@ public class TutorialController : MonoBehaviour
     // Order Item Instructions
     public GameObject inventoryUI;
     public GameObject webpage;
+    public GameObject orderItemArrow;
 
 
     // Pick Up Instructions
     public GameObject[] emptyShelves;
-
+    public GameObject pickupArrow;
 
     // Customer Arrives
     public GameObject customerAI;
@@ -37,6 +39,8 @@ public class TutorialController : MonoBehaviour
     // Customer Gets Item
     public Transform lineArea;
 
+    // Customer Checkout
+    public GameObject checkoutArrow;
     // Tutorial Finish
     //public Animation fadeToBlack;
     public GameObject customer;
@@ -44,6 +48,10 @@ public class TutorialController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        website.sortingOrder = 0;
+        orderItemArrow.SetActive(false);
+        pickupArrow.SetActive(false);
+        checkoutArrow.SetActive(false);
         foreach (DialogueRenderer dr in dialogue)
             dr.gameObject.SetActive(false);
         foreach (GameObject inst in instructions)
@@ -137,12 +145,14 @@ public class TutorialController : MonoBehaviour
 
     private void OrderItemsInstructions() //Part 2
     {
-
+        if (!orderItemArrow.activeSelf)
+            orderItemArrow.SetActive(true);
         if (!inventoryUI.activeSelf)
             inventoryUI.SetActive(true);
 
         if (webpage.activeSelf)
         {
+            orderItemArrow.SetActive(false);
             NextPart();
             Debug.Log("OrderItemsInstructions");
         }
@@ -160,6 +170,10 @@ public class TutorialController : MonoBehaviour
 
     private void PickUpInstructions() // Part 4
     {
+        //website.sortingOrder = 4;
+        if (!pickupArrow.activeSelf)
+            pickupArrow.SetActive(true);
+
         int count = 0;
         foreach (GameObject shelf in emptyShelves)
         {
@@ -168,6 +182,7 @@ public class TutorialController : MonoBehaviour
         }
         if (count >= emptyShelves.Length/2)
         {
+            pickupArrow.SetActive(false);
             NextPart();
             Debug.Log("PickUpInstructions Completed");
         }
@@ -221,10 +236,13 @@ public class TutorialController : MonoBehaviour
 
     private void CustomerCheckout()
     {
+        if (!checkoutArrow.activeSelf)
+            checkoutArrow.SetActive(true);
         Debug.Log("Checking for Customer leaving");
         if (!customer.activeSelf)
         {
             Debug.Log("CustomerCheckout Completed");
+            checkoutArrow.SetActive(false);
             NextPart();
         }
              
