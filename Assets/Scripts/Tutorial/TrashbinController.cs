@@ -19,6 +19,7 @@ public class TrashbinController : MonoBehaviour, IInteractable
     }
     public void Interact()
     {
+        if (stocking.inventory.Count <= 0) { return; }
         Debug.Log("Trashbin interaction");
         var where = stocking.inventory.IndexOf(stocking.inventory[0]);
         stocking.inventory.Remove(stocking.inventory[0]);

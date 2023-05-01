@@ -9,9 +9,8 @@ public class NavMeshAI : MonoBehaviour
 {
 
     public List<GameObject> parentReferenceObjects;
-    public GameObject lineLocation;
+    public GameObject destinationParent;
     public GameObject taskHandler;
-    public GameObject leaveLocation;
 
     private NavMeshAgent agent;
     private Transform target;
@@ -21,10 +20,21 @@ public class NavMeshAI : MonoBehaviour
     private bool inLine = false;
     private Animator customerAnimator;
     private int lineIndex;
+    private List<Transform> destinations;
 
     // Called on instance creation
     void Awake()
     {
+
+        // Initialize all public variables for prefab instance
+        parentReferenceObjects = GameObject.FindGameObjectsWithTag("Shelves").ToList();
+        destinationParent = GameObject.FindGameObjectWithTag("Destinations");
+        taskHandler = GameObject.FindGameObjectWithTag("GameController");
+
+        // Initialize all the destination order
+        destinations = destinationParent.GetComponentsInChildren<Transform>().ToList();
+        destinations.Remove(destinationParent.transform);
+
         // Convert parent references into a list of potential targetPosition locations
         foreach (var parent in parentReferenceObjects)
         {
@@ -45,7 +55,8 @@ public class NavMeshAI : MonoBehaviour
     }
     // Start is called before the first frame update
     void Start()
-    {
+    {   
+        // Get initial location to go to
         var choice = Random.Range(0, references.Count - 1);
         target = references[choice].transform;
         targetPosition = target.position;
@@ -56,6 +67,7 @@ public class NavMeshAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Control agent animation
         if (agent.hasPath)
         {
             var directionHandler = agent.destination - transform.position;
@@ -74,16 +86,15 @@ public class NavMeshAI : MonoBehaviour
             if (!inLine)
             {
                 // Once we're there we're going to set inline to true
-                if (Vector2.Distance(transform.position, lineLocation.transform.position) > 0.25f)
+                if (Vector2.Distance(transform.position, destinations[0].position) > 0.25f)
                 {
                     lineIndex = taskHandler.GetComponent<TaskHandler>().line.IndexOf(transform.gameObject);
-                    var finalLocation = new Vector3(lineLocation.transform.position.x, (float)(lineLocation.transform.position.y + (2.5 * lineIndex)), lineLocation.transform.position.z);
+                    var finalLocation = new Vector3(destinations[0].position.x, (float)(destinations[0].position.y + (2.5 * lineIndex)), destinations[0].position.z);
                     agent.SetDestination(finalLocation);
                 }
                 else
                 {
                     inLine = true;
-                    Debug.Log("In Line is true");
                 }
             }
             // Once inline is true this else would likely hold AI logic for being helped then exiting the store
@@ -91,8 +102,8 @@ public class NavMeshAI : MonoBehaviour
             {
                 if (!taskHandler.GetComponent<TaskHandler>().line.Contains(transform.gameObject)) 
                 {
-                    agent.SetDestination(leaveLocation.transform.position);
-                    if (Vector2.Distance(transform.position, leaveLocation.transform.position) < 0.25f)
+                    agent.SetDestination(destinations[1].position);
+                    if (Vector2.Distance(transform.position, destinations[1].position) < 0.25f)
                     {
                         transform.gameObject.SetActive(false);
                     }
@@ -107,7 +118,6 @@ public class NavMeshAI : MonoBehaviour
         if (target.gameObject.activeSelf)
         {
             references.Remove(target);
-            Debug.Log("Rerouting");
             var choice = Random.Range(0, references.Count - 1);
             target = references[choice].transform;
             targetPosition = target.position;
@@ -118,7 +128,6 @@ public class NavMeshAI : MonoBehaviour
         // Wait for a second before grabbing produce and then moving to the register
         if (Vector2.Distance(transform.position, targetPosition) < 1f)
         {
-            Debug.Log("In Position");
             StartCoroutine(GrabProduct());
         }
     }

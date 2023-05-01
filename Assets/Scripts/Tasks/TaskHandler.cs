@@ -11,12 +11,16 @@ public class TaskHandler : MonoBehaviour
     private List<EmptyShelf> lettuceShelves;
     private List<EmptyShelf> appleShelves;
     private float clock;
+    private int trackWaves = 0;
 
     public GameObject lettuceParent;
     public GameObject appleParent;
     public List<GameObject> line;
     public int customersInLevel = 6;
     public int customersHelped = 0;
+    public GameObject spawnArea;
+    // Turn this into a list when using more than 1 type of customer
+    public GameObject customerPrefab;
 
     private void Start()
     {
@@ -54,15 +58,41 @@ public class TaskHandler : MonoBehaviour
 
     private void Update()
     {
+        if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Tutorial"))
+        {
+            // Spawn Customers
+            if (trackWaves == customersHelped && trackWaves < customersInLevel)
+            {
+                if (trackWaves == 0)
+                {
+                    StartCoroutine(SpawnCustomerWave(1f));
+                }
+                else
+                {
+                    StartCoroutine(SpawnCustomerWave(2f));
+                }
+                trackWaves += 3;
+            }
+        }
+
+        // Determine win conditions
         bool stocked = ShelvesStocked();
         bool helped = CustomersHelped();
 
         if (stocked && helped) 
         {
-            SceneManager.LoadScene("Win Screen");
-            PlayerPrefs.SetInt("Level1Clock", (int)Math.Round(clock));
+            StartCoroutine(WaitBeforeLoad());
         }
-        clock += Time.deltaTime;
+        else
+        {
+            clock += Time.deltaTime;
+        }
+        
+        // Loss conditions (Take longer than 120 seconds)
+        if (clock >= 160 && SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Tutorial"))
+        {
+            SceneManager.LoadScene("Loss Screen");
+        }
     }
 
     // Determine whether or not all the shelves are stocked
@@ -103,5 +133,22 @@ public class TaskHandler : MonoBehaviour
         {
             return false;
         }
+    }
+
+    IEnumerator SpawnCustomerWave(float initialWait)
+    {
+        yield return new WaitForSeconds(initialWait);
+        Instantiate(customerPrefab, spawnArea.transform);
+        yield return new WaitForSeconds(1.5f);
+        Instantiate(customerPrefab, spawnArea.transform);
+        yield return new WaitForSeconds(1.5f);
+        Instantiate(customerPrefab, spawnArea.transform);
+    }
+
+    IEnumerator WaitBeforeLoad()
+    {
+        yield return new WaitForSeconds(3f);
+        PlayerPrefs.SetInt("Level1Clock", (int)Math.Round(clock));
+        SceneManager.LoadScene("Win Screen");
     }
 }

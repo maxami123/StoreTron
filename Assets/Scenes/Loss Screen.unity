@@ -569,9 +569,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
-        m_MethodName: Exit
+      - m_Target: {fileID: 1363575771}
+        m_TargetAssemblyTypeName: WinLoss, Assembly-CSharp
+        m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -892,9 +892,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21b66da1119e2d141aaa2158e3acef75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exitButton: {fileID: 1138730606}
-  restartButton: {fileID: 1584849832}
-  winLossUI: {fileID: 1978720534}
+  levelCompletedText: {fileID: 0}
+  personalBestText: {fileID: 0}
+  medalTimes: 
+  medals: []
 --- !u!224 &1363575772
 RectTransform:
   m_ObjectHideFlags: 0
@@ -999,9 +1000,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
-        m_MethodName: Play
+      - m_Target: {fileID: 1363575771}
+        m_TargetAssemblyTypeName: WinLoss, Assembly-CSharp
+        m_MethodName: PlayAgain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

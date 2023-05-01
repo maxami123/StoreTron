@@ -16,9 +16,12 @@ public class WinLoss : MonoBehaviour
 
     private void Start()
     {
-        clockTime = PlayerPrefs.GetInt("Level1Clock");
-        SelectMedal();
-        ShowTimeText();
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Win Screen"))
+        {
+            clockTime = PlayerPrefs.GetInt("Level1Clock");
+            SelectMedal();
+            ShowTimeText();
+        }
     }
 
     public void PlayAgain()

@@ -37,6 +37,7 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        maxCooldown = PlayerPrefs.GetFloat("DashCooldown");
         if (inMenu) { return; }
         // Get components off of object
         body = GetComponent<Rigidbody2D>();
