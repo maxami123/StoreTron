@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class Movement : MonoBehaviour
 {
     [Header("Editable Player Variables")]
@@ -20,6 +21,10 @@ public class Movement : MonoBehaviour
     public bool inMenu;
     
 
+    [Header("Audio")]
+    private AudioSource dashSfx;
+
+    
     // Private variables
     private Rigidbody2D body;
     private SpriteRenderer spriteRenderer;
@@ -28,7 +33,7 @@ public class Movement : MonoBehaviour
     private float horizontal;
     private float vertical;
 
-    // Cooldown Variables
+    [Header("Cooldown Variables")]
     public float dashCooldownTimer;
     public bool canDash = true;
 
@@ -45,6 +50,7 @@ public class Movement : MonoBehaviour
         dashLeft = maxDuration;
         dashCooldownTimer = maxCooldown;
         inMenu = false;
+        dashSfx = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -99,6 +105,8 @@ public class Movement : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.LeftShift) && canDash) // Key must be held down to get maximum effect of dash
             {
+                // Play Audio
+                dashSfx.Play();
                 isDashing = true;
                 canDash = false;
             }

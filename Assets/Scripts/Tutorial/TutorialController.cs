@@ -170,7 +170,7 @@ public class TutorialController : MonoBehaviour
 
     private void PickUpInstructions() // Part 4
     {
-        //website.sortingOrder = 4;
+        website.sortingOrder = 4;
         if (!pickupArrow.activeSelf)
             pickupArrow.SetActive(true);
 
@@ -210,6 +210,7 @@ public class TutorialController : MonoBehaviour
         if (!customerAI.activeSelf && !completed[5])
         {
             completed[5] = true;
+            customerAI.SetActive(true);
             Debug.Log("CustomerArrives Completed");
             StartCoroutine(DelayedNextPart());
         }
@@ -219,7 +220,7 @@ public class TutorialController : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
 
-        customerAI.SetActive(true);
+        
         NextPart();
     }
 

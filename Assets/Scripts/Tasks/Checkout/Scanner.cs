@@ -5,11 +5,18 @@ using UnityEngine;
 public class Scanner : MonoBehaviour, IInteractable
 {
     public GameObject taskHandler;
+    private AudioSource checkoutSfx;
+
+    void Start()
+    {
+        checkoutSfx = GetComponent<AudioSource>();
+    }
 
     public void Interact()
     {
         if (taskHandler.GetComponent<TaskHandler>().line.Count > 0)
         {
+            checkoutSfx.Play();
             taskHandler.GetComponent<TaskHandler>().line.RemoveAt(0);
             taskHandler.GetComponent<TaskHandler>().customersHelped++;
         }

@@ -15,6 +15,9 @@ public class Stocking : MonoBehaviour
     public List<Sprite> sprites;
     public List<Image> inventorySprites;
 
+    // Sfx for stocking
+    private AudioSource stockingSfx;
+
     // This will help determine whether the player can pick up anything else on top of what they currently have
     // This also gives me an idea about dropping items (Perhaps into a bin but that's for later)
     private int inventoryCap = 1;
@@ -43,6 +46,7 @@ public class Stocking : MonoBehaviour
         {
                 imageSprite.enabled = false;
         }
+        stockingSfx = GetComponent<AudioSource>();
     }
 
 
@@ -73,7 +77,7 @@ public class Stocking : MonoBehaviour
         {
             var where = inventory.IndexOf(index);
             inventory.Remove(index);
-
+            stockingSfx.Play();
             if (where == 0 || inventorySprites.Count < 2)
             {
                 inventorySprites[0].enabled = false;
@@ -91,7 +95,7 @@ public class Stocking : MonoBehaviour
                 }
                 inventorySprites[i].enabled = false;
             }
-
+            
             return true;
         }
         return false;
