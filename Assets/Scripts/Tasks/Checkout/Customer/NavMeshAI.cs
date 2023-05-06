@@ -11,13 +11,13 @@ public class NavMeshAI : MonoBehaviour
     public List<GameObject> parentReferenceObjects;
     public GameObject destinationParent;
     public GameObject taskHandler;
+    public bool inLine = false;
 
     private NavMeshAgent agent;
     private Transform target;
     private Vector3 targetPosition;
     private List<Transform> references = new List<Transform>();
     private bool grabbedProduct;
-    private bool inLine = false;
     private Animator customerAnimator;
     private int lineIndex;
     private List<Transform> destinations;
