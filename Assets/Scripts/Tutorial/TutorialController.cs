@@ -13,7 +13,7 @@ public class TutorialController : MonoBehaviour
     public GameObject text;
     public List<bool> completed;
     public Canvas website;
-    
+    public NavMeshAI ai;
 
     // Movement Instructions
     private bool left;
@@ -228,7 +228,7 @@ public class TutorialController : MonoBehaviour
     {
         if (!customerAI.GetComponentInChildren<NavMeshAI>().enabled)
             customerAI.GetComponentInChildren<NavMeshAI>().enabled = true;
-        if (Vector3.Distance(customerAI.GetComponentInChildren<NavMeshAI>().gameObject.transform.position, lineArea.position) <= 2)
+        if (ai.inLine)
         {
             NextPart();
             Debug.Log("CustomerGetsItem Completed");   

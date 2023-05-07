@@ -1148,6 +1148,7 @@ MonoBehaviour:
   text: {fileID: 1866716739}
   completed: 
   website: {fileID: 1425994039}
+  ai: {fileID: 2058151353}
   inventoryUI: {fileID: 1549876018}
   webpage: {fileID: 207068012}
   orderItemArrow: {fileID: 1050667765}
@@ -12251,6 +12252,7 @@ MonoBehaviour:
   customersHelped: 0
   spawnArea: {fileID: 0}
   customerPrefab: {fileID: 0}
+  clock: 0
 --- !u!82 &872068075
 AudioSource:
   m_ObjectHideFlags: 0
@@ -20276,6 +20278,7 @@ MonoBehaviour:
   - {fileID: 454233225}
   destinationParent: {fileID: 607766920}
   taskHandler: {fileID: 872068071}
+  inLine: 0
 --- !u!195 &2058151354
 NavMeshAgent:
   m_ObjectHideFlags: 0
