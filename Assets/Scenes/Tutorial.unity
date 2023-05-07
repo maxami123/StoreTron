@@ -1528,7 +1528,7 @@ MonoBehaviour:
   - "If you ever grab something you don\u2019t want just throw it out in the bin."
   - Also, don't forget I built in a little boost system to help you get around the
     store.
-  textSpeed: 0.05
+  textSpeed: 0.03
   movement: {fileID: 41129211}
   interacting: {fileID: 41129213}
 --- !u!1 &207068012
@@ -1621,7 +1621,7 @@ MonoBehaviour:
   textComponent: {fileID: 1849312452}
   lines:
   - Great job Storetron! The store looks ready to go!
-  textSpeed: 0.05
+  textSpeed: 0.03
   movement: {fileID: 41129211}
   interacting: {fileID: 41129213}
 --- !u!1 &254321066
@@ -11332,7 +11332,7 @@ MonoBehaviour:
   lines:
   - "Alright, it looks like some shelves are empty, so let\u2019s have some items
     delivered to the store."
-  textSpeed: 0.05
+  textSpeed: 0.03
   movement: {fileID: 41129211}
   interacting: {fileID: 41129213}
 --- !u!1 &662474020
@@ -11893,7 +11893,7 @@ MonoBehaviour:
     column in the store.  '
   - 'If you end up not ordering enough, no worries just come back and order some
     more. '
-  textSpeed: 0.05
+  textSpeed: 0.03
   movement: {fileID: 41129211}
   interacting: {fileID: 41129213}
 --- !u!1 &762564883
@@ -12726,7 +12726,7 @@ MonoBehaviour:
   - 'The items will be delivered in the top left corner of the store. '
   - Go ahead and grab them, then stock the shelves with the items.
   - Remember to stock shelves with the same items so we can keep the store organized.
-  textSpeed: 0.05
+  textSpeed: 0.03
   movement: {fileID: 41129211}
   interacting: {fileID: 41129213}
 --- !u!1 &949814681
@@ -16804,7 +16804,7 @@ MonoBehaviour:
   lines:
   - Great job Storetron! I believe you are ready to run the store on your own.
   - Good Luck!
-  textSpeed: 0.05
+  textSpeed: 0.03
   movement: {fileID: 41129211}
   interacting: {fileID: 41129213}
 --- !u!1 &1185025064
@@ -18275,7 +18275,7 @@ MonoBehaviour:
   lines:
   - It looks like that customer's just about ready.
   - Go ahead and check out that customer to complete their transaction!
-  textSpeed: 0.05
+  textSpeed: 0.03
   movement: {fileID: 41129211}
   interacting: {fileID: 41129213}
 --- !u!1 &1569340043
@@ -18850,7 +18850,7 @@ MonoBehaviour:
   textComponent: {fileID: 425261346}
   lines:
   - ' Oh! Looks like we have our first customer! '
-  textSpeed: 0.05
+  textSpeed: 0.03
   movement: {fileID: 41129211}
   interacting: {fileID: 41129213}
 --- !u!1 &1719968412
@@ -20589,7 +20589,7 @@ MonoBehaviour:
   - Welcome, StoreTron! I have invented you to run my store. You will help me stock
     shelves and complete customer transactions.
   - Let's get started!
-  textSpeed: 0.05
+  textSpeed: 0.03
   movement: {fileID: 41129211}
   interacting: {fileID: 41129213}
 --- !u!1 &2101353259
