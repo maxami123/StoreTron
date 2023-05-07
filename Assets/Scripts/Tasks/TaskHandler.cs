@@ -4,13 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static Unity.VisualScripting.Metadata;
+//using static Unity.VisualScripting.Metadata;
 
 public class TaskHandler : MonoBehaviour
 {
     private List<EmptyShelf> lettuceShelves;
     private List<EmptyShelf> appleShelves;
-    private float clock;
     private int trackWaves = 0;
 
     public GameObject lettuceParent;
@@ -21,6 +20,7 @@ public class TaskHandler : MonoBehaviour
     public GameObject spawnArea;
     // Turn this into a list when using more than 1 type of customer
     public GameObject customerPrefab;
+    public float clock;
 
     private void Start()
     {
