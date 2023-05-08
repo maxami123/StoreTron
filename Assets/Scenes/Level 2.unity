@@ -15188,6 +15188,9 @@ MonoBehaviour:
   customersHelped: 0
   spawnArea: {fileID: 712214816}
   customerPrefab: {fileID: 4003222376193333038, guid: 1bf8bbcf5395a47448206854e2220d02, type: 3}
+  clock: 0
+  loseTime: 250
+  currentLevel: 2
 --- !u!82 &872068075
 AudioSource:
   m_ObjectHideFlags: 0

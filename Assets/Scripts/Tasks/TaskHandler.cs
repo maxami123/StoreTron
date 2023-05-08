@@ -21,6 +21,8 @@ public class TaskHandler : MonoBehaviour
     // Turn this into a list when using more than 1 type of customer
     public GameObject customerPrefab;
     public float clock;
+    public int loseTime;
+    public int currentLevel;
 
     private void Start()
     {
@@ -88,8 +90,8 @@ public class TaskHandler : MonoBehaviour
             clock += Time.deltaTime;
         }
         
-        // Loss conditions (Take longer than 120 seconds)
-        if (clock >= 160 && SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Tutorial"))
+        // Loss conditions (Take longer than the public loseTime variable)
+        if (clock >= loseTime && SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Tutorial"))
         {
             SceneManager.LoadScene("Loss Screen");
         }
@@ -149,6 +151,7 @@ public class TaskHandler : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         PlayerPrefs.SetInt("Level1Clock", (int)Math.Round(clock));
+        PlayerPrefs.SetInt("PrevLevel", currentLevel);
         SceneManager.LoadScene("Win Screen");
     }
 }

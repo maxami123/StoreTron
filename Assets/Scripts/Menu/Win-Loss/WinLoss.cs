@@ -12,6 +12,7 @@ public class WinLoss : MonoBehaviour
     public List<GameObject> medals;
 
     private int clockTime;
+    private int prevLevel;
 
 
     private void Start()
@@ -19,6 +20,7 @@ public class WinLoss : MonoBehaviour
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Win Screen"))
         {
             clockTime = PlayerPrefs.GetInt("Level1Clock");
+            prevLevel = PlayerPrefs.GetInt("PrevLevel");
             SelectMedal();
             ShowTimeText();
         }
@@ -26,12 +28,21 @@ public class WinLoss : MonoBehaviour
 
     public void PlayAgain()
     {
-        SceneManager.LoadScene("Level 1");
+        SceneManager.LoadScene($"Level {prevLevel}");
     }
 
     public void MainMenu()
     {
         SceneManager.LoadScene("Main Menu");
+    }
+
+    public void NextLevel()
+    {
+        // Check to see if the next level exists in the build or not
+        if (SceneManager.GetSceneByName($"Level {prevLevel+1}").IsValid())
+        {
+            SceneManager.LoadScene("Upgrades");
+        }
     }
 
     void SelectMedal()
