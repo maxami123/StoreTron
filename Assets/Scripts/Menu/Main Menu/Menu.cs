@@ -12,6 +12,7 @@ public class Menu : MonoBehaviour
         PlayerPrefs.SetFloat("DashCooldown", 5f);
         PlayerPrefs.SetInt("InventorySize", 1);
         PlayerPrefs.SetFloat("Level1Clock", 0f);
+        PlayerPrefs.SetInt("PrevLevel", 0);
     }
 
     public void Exit()

@@ -39,10 +39,11 @@ public class WinLoss : MonoBehaviour
     public void NextLevel()
     {
         // Check to see if the next level exists in the build or not
-        if (SceneManager.GetSceneByName($"Level {prevLevel+1}").IsValid())
+        if (prevLevel == 2)
         {
-            SceneManager.LoadScene("Upgrades");
+            return;
         }
+        SceneManager.LoadScene("Upgrades");
     }
 
     void SelectMedal()

@@ -355,7 +355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelCompletedText: {fileID: 521955994}
   personalBestText: {fileID: 1180112112}
-  medalTimes: 1e0000003c000000
+  medalTimes: 5a00000078000000
   medals:
   - {fileID: 764425453}
   - {fileID: 846747023}
@@ -1359,7 +1359,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 315777167}
         m_TargetAssemblyTypeName: WinLoss, Assembly-CSharp
-        m_MethodName: PlayAgain
+        m_MethodName: NextLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

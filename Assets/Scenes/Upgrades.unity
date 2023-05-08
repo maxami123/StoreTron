@@ -566,6 +566,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bfaf0a9077a18a4fa394ab0c521873f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryButton: {fileID: 1890024992}
+  dashButton: {fileID: 472949007}
 --- !u!4 &1093925097
 Transform:
   m_ObjectHideFlags: 0
