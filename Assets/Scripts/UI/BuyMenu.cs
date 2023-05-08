@@ -10,6 +10,9 @@ public class BuyMenu : MonoBehaviour, IInteractable
     public GameObject location;
     public List<GameObject> spawnableCommerce;
 
+
+    [SerializeField] private AudioSource buySound;
+    [SerializeField] private AudioSource openSound;
     private List<Transform> locations;
 
     void Start()
@@ -26,11 +29,13 @@ public class BuyMenu : MonoBehaviour, IInteractable
 
     public void EnableMenu()
     {
+        openSound.Play();
         menu.SetActive(true);
         storetron.GetComponent<Movement>().inMenu = true;
     }
     public void CloseMenu()
     {
+        openSound.Play();
         menu.SetActive(false);
         storetron.GetComponent<Movement>().inMenu = false;
     }
@@ -43,6 +48,7 @@ public class BuyMenu : MonoBehaviour, IInteractable
             hitColliders = Physics2D.OverlapCircle(tran.position, 0.2f);
             if (hitColliders == null)
             {
+                buySound.Play();// Play Notif sound for buying object
                 GameObject product = Instantiate(spawnableCommerce[index]);
                 product.transform.position = tran.position;
                 product.transform.rotation = Quaternion.identity;

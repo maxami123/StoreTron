@@ -6,11 +6,15 @@ using UnityEngine;
 public class TrashbinController : MonoBehaviour, IInteractable
 {
     public Stocking stocking;
+    private AudioSource trashSound;
 
+    void Awake()
+    {
+        trashSound = GetComponent<AudioSource>();
+    }
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -22,6 +26,7 @@ public class TrashbinController : MonoBehaviour, IInteractable
     {
         if (stocking.inventory.Count <= 0) { return; }
         Debug.Log("Trashbin interaction");
+        trashSound.Play();
         //var where = stocking.inventory.IndexOf(stocking.inventory[0]);
         var where = stocking.inventory.IndexOf(stocking.inventory[stocking.inventory.Count - 1]);
 

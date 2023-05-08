@@ -17,10 +17,16 @@ public class DialogueRenderer : MonoBehaviour
     private GameObject background;
     private GameObject inventor;
     private GameObject text;
+    private AudioSource blip;
 
     // Start is called before the first frame update
+    void Awake()
+    {
+        blip = GetComponent<AudioSource>();
+    }
     void Start()
     {
+        
     }
 
     // Update is called once per frame
@@ -61,6 +67,7 @@ public class DialogueRenderer : MonoBehaviour
         // Type each character 1 by 1
         foreach (char c in lines[index].ToCharArray())
         {
+            blip.Play();
             textComponent.text += c;
             yield return new WaitForSeconds(textSpeed);
         }

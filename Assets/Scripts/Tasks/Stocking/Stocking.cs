@@ -16,8 +16,8 @@ public class Stocking : MonoBehaviour
     public List<Image> inventorySprites;
 
     // Sfx for stocking
-    private AudioSource stockingSfx;
-
+    [SerializeField] private AudioSource stockingSfx;
+    [SerializeField] private AudioSource pickupSfx;
     // This will help determine whether the player can pick up anything else on top of what they currently have
     // This also gives me an idea about dropping items (Perhaps into a bin but that's for later)
     private int inventoryCap = 1;
@@ -56,6 +56,8 @@ public class Stocking : MonoBehaviour
         // Make sure there is enough inventory space to pick up the object
         if (inventory.Count < inventoryCap)
         {
+            // Play pick up sfx
+            pickupSfx.Play();
             // Add the gameobject to the inventory
             inventory.Add(index);
             var tempSprite = inventorySprites[inventory.Count() - 1];

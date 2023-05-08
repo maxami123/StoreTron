@@ -22,10 +22,13 @@ public class NavMeshAI : MonoBehaviour
     private int lineIndex;
     private List<Transform> destinations;
 
+    private AudioSource spawnNotif;
     // Called on instance creation
     void Awake()
     {
-
+        spawnNotif = GetComponent<AudioSource>();
+        // Play sound when spawned
+        spawnNotif.Play();
         // Initialize all public variables for prefab instance
         parentReferenceObjects = GameObject.FindGameObjectsWithTag("Shelves").ToList();
         destinationParent = GameObject.FindGameObjectWithTag("Destinations");
@@ -56,6 +59,7 @@ public class NavMeshAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   
+        
         // Get initial location to go to
         var choice = Random.Range(0, references.Count - 1);
         target = references[choice].transform;
