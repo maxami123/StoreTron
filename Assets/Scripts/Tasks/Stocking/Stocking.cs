@@ -78,16 +78,20 @@ public class Stocking : MonoBehaviour
             var where = inventory.IndexOf(index);
             inventory.Remove(index);
             stockingSfx.Play();
-            if (where == 0 || inventorySprites.Count < 2)
+            if (where == 0 && inventorySprites.Count < 2)
             {
+                Debug.Log("Count Case");
+                Debug.Log(inventorySprites.Count);
                 inventorySprites[0].enabled = false;
             }
             else if (where == 0 && !inventorySprites[1].isActiveAndEnabled)
             {
+                Debug.Log("Active Case");
                 inventorySprites[0].enabled = false;
             }
             else 
             {
+                Debug.Log("Edge Case");
                 int i;
                 for (i = where; i <= inventorySprites.Count - 2; i++)
                 {
