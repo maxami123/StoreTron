@@ -10,10 +10,11 @@ public class WinLoss : MonoBehaviour
     public GameObject personalBestText;
     public List<int> medalTimes;
     public List<GameObject> medals;
+    public AudioClip buttonClickSound;
 
     private int clockTime;
     private int prevLevel;
-
+    private AudioSource audioSource;
 
     private void Start()
     {
@@ -24,16 +25,30 @@ public class WinLoss : MonoBehaviour
             SelectMedal();
             ShowTimeText();
         }
+        audioSource = GetComponent<AudioSource>();
+
+        // Add listeners to all buttons to play sound when clicked
+        Button playAgainButton = GameObject.Find("Play Again Button").GetComponent<Button>();
+        playAgainButton.onClick.AddListener(PlayAgain);
+
+        Button mainMenuButton = GameObject.Find("Main Menu Button").GetComponent<Button>();
+        mainMenuButton.onClick.AddListener(MainMenu);
+
+        Button nextLevelButton = GameObject.Find("Next Level Button").GetComponent<Button>();
+        nextLevelButton.onClick.AddListener(NextLevel);
     }
 
     public void PlayAgain()
     {
+        audioSource.PlayOneShot(buttonClickSound);
         SceneManager.LoadScene($"Level {prevLevel}");
+
     }
 
     public void MainMenu()
     {
         SceneManager.LoadScene("Main Menu");
+        audioSource.PlayOneShot(buttonClickSound);
     }
 
     public void NextLevel()
@@ -43,7 +58,9 @@ public class WinLoss : MonoBehaviour
         {
             return;
         }
+        audioSource.PlayOneShot(buttonClickSound);
         SceneManager.LoadScene("Upgrades");
+
     }
 
     void SelectMedal()

@@ -9,12 +9,18 @@ public class PauseMenu : MonoBehaviour
     public Button restartButton;
     public GameObject pauseMenuUI;
     private bool isPaused = false;
+    public AudioClip buttonSound;
 
     void Start()
     {
         exitButton.onClick.AddListener(Exit);
         continueButton.onClick.AddListener(Resume);
         restartButton.onClick.AddListener(Restart);
+
+        AudioSource audioSource = GetComponent<AudioSource>();
+        exitButton.onClick.AddListener(() => PlayButtonSound(audioSource));
+        continueButton.onClick.AddListener(() => PlayButtonSound(audioSource));
+        restartButton.onClick.AddListener(() => PlayButtonSound(audioSource));
     }
 
     void Update()
@@ -55,5 +61,10 @@ public class PauseMenu : MonoBehaviour
     public void Exit()
     {
         Application.Quit();
+    }
+
+    void PlayButtonSound(AudioSource audioSource)
+    {
+        audioSource.PlayOneShot(buttonSound);
     }
 }
