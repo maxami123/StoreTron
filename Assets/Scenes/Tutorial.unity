@@ -17993,7 +17993,7 @@ MonoBehaviour:
     long, they'll leave.
   - And if that happens, you're going in the trash.
   - So make sure every customer is taken care of.
-  - 'Anyways,  good Luck!  '
+  - 'Anyways...Good luck!  '
   textSpeed: 0.04
   movement: {fileID: 41129211}
   interacting: {fileID: 41129213}
