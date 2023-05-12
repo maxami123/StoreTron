@@ -42,7 +42,6 @@ public class TutorialController : MonoBehaviour
     // Customer Checkout
     public GameObject checkoutArrow;
     // Tutorial Finish
-    //public Animation fadeToBlack;
     public GameObject customer;
 
     // Start is called before the first frame update
@@ -251,7 +250,6 @@ public class TutorialController : MonoBehaviour
 
     private void TutorialFinish()
     {
-        //fadeToBlack.Play();
         SceneManager.LoadScene("Upgrades");
     }
 

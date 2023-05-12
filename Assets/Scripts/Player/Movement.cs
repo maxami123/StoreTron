@@ -142,4 +142,9 @@ public class Movement : MonoBehaviour
             storedVertical= 0f;
         }
     }
+
+    public void StopMovement() // Stops any left over movement
+    {
+        body.velocity = Vector2.zero;
+    }
 }

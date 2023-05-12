@@ -24,6 +24,7 @@ public class DialogueRenderer : MonoBehaviour
     {
         blip = GetComponent<AudioSource>();
     }
+    
     void Start()
     {
         
@@ -55,6 +56,7 @@ public class DialogueRenderer : MonoBehaviour
         background.SetActive(true);
         inventor.SetActive(true);
         text.SetActive(true);
+        movement.StopMovement();
         movement.enabled = false;
         interacting.enabled = false;
         textComponent.text = string.Empty;  

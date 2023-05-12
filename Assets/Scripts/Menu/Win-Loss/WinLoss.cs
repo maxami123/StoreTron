@@ -18,7 +18,7 @@ public class WinLoss : MonoBehaviour
 
     private void Start()
     {
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Win Screen"))
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Win Screen") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Final Win Screen"))
         {
             clockTime = PlayerPrefs.GetInt("Level1Clock");
             prevLevel = PlayerPrefs.GetInt("PrevLevel");
@@ -33,9 +33,11 @@ public class WinLoss : MonoBehaviour
 
         Button mainMenuButton = GameObject.Find("Main Menu Button").GetComponent<Button>();
         mainMenuButton.onClick.AddListener(MainMenu);
-
-        Button nextLevelButton = GameObject.Find("Next Level Button").GetComponent<Button>();
-        nextLevelButton.onClick.AddListener(NextLevel);
+        if (SceneManager.GetActiveScene().name == "Win Screen")
+        {
+            Button nextLevelButton = GameObject.Find("Next Level Button").GetComponent<Button>();
+            nextLevelButton.onClick.AddListener(NextLevel);
+        }
     }
 
     public void PlayAgain()

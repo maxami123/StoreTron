@@ -11,6 +11,7 @@ public class TaskHandler : MonoBehaviour
     private List<EmptyShelf> lettuceShelves;
     private List<EmptyShelf> appleShelves;
     private int trackWaves = 0;
+    private string finalLevelName = "Level 2";
 
     public GameObject lettuceParent;
     public GameObject appleParent;
@@ -152,6 +153,13 @@ public class TaskHandler : MonoBehaviour
         yield return new WaitForSeconds(3f);
         PlayerPrefs.SetInt("Level1Clock", (int)Math.Round(clock));
         PlayerPrefs.SetInt("PrevLevel", currentLevel);
-        SceneManager.LoadScene("Win Screen");
+        if (SceneManager.GetActiveScene().name == finalLevelName) // If its the last level, load the final win screen
+        {
+            SceneManager.LoadScene("Final Win Screen");
+        }
+        else
+        {
+            SceneManager.LoadScene("Win Screen");
+        }
     }
 }
