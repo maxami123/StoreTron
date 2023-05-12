@@ -92,19 +92,23 @@ public class NavMeshAI : MonoBehaviour
         }
         else
         {
-            if (timer >= 5f && !shown)
+            if (SceneManager.GetSceneByName("Tutorial") != SceneManager.GetActiveScene())
             {
-                StartCoroutine(ShowAngry());
-            }
-            if (timer >= 10f)
-            {
-                StartCoroutine(EndLevel());
-                agent.SetDestination(destinations[1].position);
-                if (Vector2.Distance(transform.position, destinations[1].position) < 0.25f)
+                if (timer >= 5f && !shown)
                 {
-                    GetComponent<SpriteRenderer>().enabled = false;
-                    GetComponent<BoxCollider2D>().enabled = false;
+                    StartCoroutine(ShowAngry());
                 }
+                if (timer >= 10f)
+                {
+                    StartCoroutine(EndLevel());
+                    agent.SetDestination(destinations[1].position);
+                    if (Vector2.Distance(transform.position, destinations[1].position) < 0.25f)
+                    {
+                        GetComponent<SpriteRenderer>().enabled = false;
+                        GetComponent<BoxCollider2D>().enabled = false;
+                    }
+                }
+
             }
             // If not inline then we should move the agent to the line location
             if (!inLine)
