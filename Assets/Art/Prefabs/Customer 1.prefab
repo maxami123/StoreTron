@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 4003222376193333047}
   - component: {fileID: 170040971735739635}
   m_Layer: 2
-  m_Name: Customer
+  m_Name: Customer 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -163,7 +163,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 6
-  m_Sprite: {fileID: 48129276, guid: 8926824a1dd5249d095191f47d417c9f, type: 3}
+  m_Sprite: {fileID: -1693120984, guid: c1f559ee34241cb46b8348e78f9a307d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -210,7 +210,7 @@ Animator:
   m_GameObject: {fileID: 4003222376193333038}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: be4b238b542a54358b3d3c488be18b7c, type: 2}
+  m_Controller: {fileID: 9100000, guid: c2d6eeb51a3f7d346929cf030bde6c80, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -260,6 +260,7 @@ MonoBehaviour:
   destinationParent: {fileID: 0}
   taskHandler: {fileID: 0}
   inLine: 0
+  leavingAngry: 0
 --- !u!82 &170040971735739635
 AudioSource:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 //using static Unity.VisualScripting.Metadata;
 
 public class TaskHandler : MonoBehaviour
@@ -20,7 +21,7 @@ public class TaskHandler : MonoBehaviour
     public int customersHelped = 0;
     public GameObject spawnArea;
     // Turn this into a list when using more than 1 type of customer
-    public GameObject customerPrefab;
+    public List<GameObject> customerPrefab;
     public float clock;
     public int loseTime;
     public int currentLevel;
@@ -141,11 +142,14 @@ public class TaskHandler : MonoBehaviour
     IEnumerator SpawnCustomerWave(float initialWait)
     {
         yield return new WaitForSeconds(initialWait);
-        Instantiate(customerPrefab, spawnArea.transform);
+        int choice = Random.Range(0, customerPrefab.Count);
+        Instantiate(customerPrefab[choice], spawnArea.transform);
         yield return new WaitForSeconds(1.5f);
-        Instantiate(customerPrefab, spawnArea.transform);
+        choice = Random.Range(0, customerPrefab.Count);
+        Instantiate(customerPrefab[choice], spawnArea.transform);
         yield return new WaitForSeconds(1.5f);
-        Instantiate(customerPrefab, spawnArea.transform);
+        choice = Random.Range(0, customerPrefab.Count);
+        Instantiate(customerPrefab[choice], spawnArea.transform);
     }
 
     IEnumerator WaitBeforeLoad()

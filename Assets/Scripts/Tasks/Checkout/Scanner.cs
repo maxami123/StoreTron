@@ -14,7 +14,7 @@ public class Scanner : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (taskHandler.GetComponent<TaskHandler>().line.Count > 0 && taskHandler.GetComponent<TaskHandler>().line[0].GetComponent<NavMeshAI>().inLine)
+        if (taskHandler.GetComponent<TaskHandler>().line.Count > 0 && taskHandler.GetComponent<TaskHandler>().line[0].GetComponent<NavMeshAI>().inLine && !taskHandler.GetComponent<TaskHandler>().line[0].GetComponent<NavMeshAI>().leavingAngry)
         {
             checkoutSfx.Play();
             taskHandler.GetComponent<TaskHandler>().line.RemoveAt(0);

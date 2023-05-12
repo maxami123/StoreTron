@@ -10310,7 +10310,10 @@ MonoBehaviour:
   customersInLevel: 6
   customersHelped: 0
   spawnArea: {fileID: 712214816}
-  customerPrefab: {fileID: 4003222376193333038, guid: 1bf8bbcf5395a47448206854e2220d02, type: 3}
+  customerPrefab:
+  - {fileID: 4003222376193333038, guid: 1bf8bbcf5395a47448206854e2220d02, type: 3}
+  - {fileID: 4003222376193333038, guid: 0b6916fcb5f140945b86edb4b98987fd, type: 3}
+  - {fileID: 4003222376193333038, guid: b4bf3d6da7a53ba4c97b53e9dd2ffcfe, type: 3}
   clock: 0
   loseTime: 160
   currentLevel: 1

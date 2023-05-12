@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class NavMeshAI : MonoBehaviour
 {
@@ -12,7 +14,11 @@ public class NavMeshAI : MonoBehaviour
     public GameObject destinationParent;
     public GameObject taskHandler;
     public bool inLine = false;
+    public bool leavingAngry = false;
 
+    private Transform angrySymbol;
+    private float timer = 0;
+    private bool shown = false;
     private NavMeshAgent agent;
     private Transform target;
     private Vector3 targetPosition;
@@ -86,6 +92,20 @@ public class NavMeshAI : MonoBehaviour
         }
         else
         {
+            if (timer >= 5f && !shown)
+            {
+                StartCoroutine(ShowAngry());
+            }
+            if (timer >= 10f)
+            {
+                StartCoroutine(EndLevel());
+                agent.SetDestination(destinations[1].position);
+                if (Vector2.Distance(transform.position, destinations[1].position) < 0.25f)
+                {
+                    GetComponent<SpriteRenderer>().enabled = false;
+                    GetComponent<BoxCollider2D>().enabled = false;
+                }
+            }
             // If not inline then we should move the agent to the line location
             if (!inLine)
             {
@@ -106,11 +126,18 @@ public class NavMeshAI : MonoBehaviour
             {
                 if (!taskHandler.GetComponent<TaskHandler>().line.Contains(transform.gameObject)) 
                 {
-                    agent.SetDestination(destinations[1].position);
+                    if (transform.gameObject.activeSelf)
+                    {
+                        agent.SetDestination(destinations[1].position);
+                    }
                     if (Vector2.Distance(transform.position, destinations[1].position) < 0.25f)
                     {
-                        transform.gameObject.SetActive(false);
+                        gameObject.SetActive(false);
                     }
+                }
+                else 
+                {
+                    timer += Time.deltaTime;
                 }
             }
         }
@@ -145,5 +172,21 @@ public class NavMeshAI : MonoBehaviour
             target.gameObject.SetActive(true);
             taskHandler.GetComponent<TaskHandler>().line.Add(transform.gameObject);
         }
+    }
+
+    IEnumerator ShowAngry()
+    {
+        shown = true;
+        angrySymbol = GetComponentsInChildren<Transform>(true)[1];
+        angrySymbol.gameObject.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        angrySymbol.gameObject.SetActive(false);
+    }
+
+    IEnumerator EndLevel()
+    {
+        leavingAngry = true;
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene("Loss Screen");
     }
 }
