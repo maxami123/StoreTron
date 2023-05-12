@@ -16,12 +16,12 @@ public class WinLoss : MonoBehaviour
     private int prevLevel;
     private AudioSource audioSource;
 
-    private void Start()
+    void Start()
     {
+        prevLevel = PlayerPrefs.GetInt("PrevLevel");
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Win Screen") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Final Win Screen"))
         {
             clockTime = PlayerPrefs.GetInt("Level1Clock");
-            prevLevel = PlayerPrefs.GetInt("PrevLevel");
             SelectMedal();
             ShowTimeText();
         }

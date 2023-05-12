@@ -189,6 +189,7 @@ public class NavMeshAI : MonoBehaviour
 
     IEnumerator EndLevel()
     {
+        PlayerPrefs.SetInt("PrevLevel", taskHandler.GetComponent<TaskHandler>().currentLevel);
         leavingAngry = true;
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("Loss Screen");
