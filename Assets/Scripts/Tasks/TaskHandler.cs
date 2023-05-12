@@ -95,6 +95,7 @@ public class TaskHandler : MonoBehaviour
         // Loss conditions (Take longer than the public loseTime variable)
         if (clock >= loseTime && SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Tutorial"))
         {
+            PlayerPrefs.SetInt("PrevLevel", currentLevel);
             SceneManager.LoadScene("Loss Screen");
         }
     }
